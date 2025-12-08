@@ -1,0 +1,5 @@
+Place your custom avatar images here:
+- custom1.png
+- custom2.png
+
+These will be referenced by seeds 'local:custom1' and 'local:custom2'.

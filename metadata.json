@@ -1,0 +1,5 @@
+{
+  "name": "jamsession-manager",
+  "description": "A jam session management application with band generation, harmonic roulette, and stage projection views.",
+  "requestFramePermissions": []
+}
