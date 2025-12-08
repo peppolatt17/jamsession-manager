@@ -309,21 +309,16 @@ export const HarmonicRouletteFixed: React.FC<HarmonicRouletteProps> = ({
             {/* FOOTER CONTROLS */}
             <div className="bg-slate-900 p-2 md:p-4 border-t border-slate-800 flex flex-col md:grid md:grid-cols-3 items-center gap-4 shrink-0">
                 
-                {/* LEFT GROUP: Timer & Controls (Play, Adjustments) */}
+                {/* LEFT GROUP: Timer & Controls (uniform) */}
                 <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto justify-start">
-                    
-                    {/* TIMER & CONTROLS */}
                     {timeLeft !== undefined && setTimeLeft && setIsRunning && (
                         <div className="flex flex-col sm:flex-row items-center gap-3 bg-slate-800/50 p-2 rounded-lg border border-slate-700">
-                             {/* DIGITS */}
-                             <div className="text-left pl-2">
-                                <span className="block text-[9px] uppercase font-bold text-white/80 tracking-widest">JAM TIMER</span>
+                            <div className="text-left pl-2">
+                                <span className="block text-[9px] uppercase font-bold text-white tracking-widest">JAM TIMER</span>
                                 <div className={`text-3xl md:text-4xl font-black tabular-nums leading-none ${timeLeft < 30 && timeLeft > 0 ? 'text-red-500 animate-pulse' : 'text-white'}`}>
                                     {formatTime(timeLeft)}
                                 </div>
                             </div>
-
-                            {/* CONTROLS */}
                             <div className="flex items-center gap-2">
                                 <button 
                                     onClick={() => setIsRunning(!isRunning)} 
@@ -331,7 +326,6 @@ export const HarmonicRouletteFixed: React.FC<HarmonicRouletteProps> = ({
                                 >
                                     {isRunning ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current" />}
                                 </button>
-                                
                                 <div className="flex flex-col gap-1">
                                     <div className="flex gap-1">
                                         <button onClick={() => handleAdjustTime(60)} className="bg-white/10 hover:bg-white/20 px-1.5 py-0.5 rounded text-[9px] font-bold text-white w-8 text-center">+1m</button>

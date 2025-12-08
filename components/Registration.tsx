@@ -17,10 +17,6 @@ export const Registration: React.FC<RegistrationProps> = ({ setViewState, onRegi
   
   // Avatar
   const [selectedAvatarSeed, setSelectedAvatarSeed] = useState<string>(AVATAR_OPTIONS[0].seed);
-  const [pressedAvatarId, setPressedAvatarId] = useState<string | null>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const [overlayCenter, setOverlayCenter] = useState<{ x: number; y: number } | null>(null);
-  const longPressTimeoutRef = useRef<number | null>(null);
 
   // Instruments (Multi-select)
   const [selectedInstruments, setSelectedInstruments] = useState<InstrumentType[]>([]);
@@ -131,81 +127,16 @@ export const Registration: React.FC<RegistrationProps> = ({ setViewState, onRegi
           {/* Sezione Avatar */}
           <div className="space-y-4">
              <h3 className="text-lg font-semibold text-slate-300 border-b border-slate-700 pb-2">Scegli il tuo Avatar</h3>
-             <div ref={gridRef} className="grid grid-cols-4 md:grid-cols-6 gap-3 relative">
+             <div className="grid grid-cols-4 md:grid-cols-6 gap-3">
               {AVATAR_OPTIONS.map((opt) => (
                  <div 
                    key={opt.id}
-                   onPointerDown={(e) => { 
-                     setSelectedAvatarSeed(opt.seed);
-                     const gridEl = gridRef.current;
-                     const targetEl = e.currentTarget as HTMLDivElement;
-                     if (gridEl) {
-                       const gridRect = gridEl.getBoundingClientRect();
-                       const targetRect = targetEl.getBoundingClientRect();
-                       const cx = targetRect.left - gridRect.left + targetRect.width / 2;
-                       const cy = targetRect.top - gridRect.top + targetRect.height / 2;
-                       setOverlayCenter({ x: cx, y: cy });
-                     }
-                     if (longPressTimeoutRef.current) {
-                       clearTimeout(longPressTimeoutRef.current);
-                     }
-                     longPressTimeoutRef.current = window.setTimeout(() => {
-                       setPressedAvatarId(opt.id);
-                     }, 350);
-                   }}
-                   onPointerUp={() => {
-                     if (longPressTimeoutRef.current) {
-                       clearTimeout(longPressTimeoutRef.current);
-                       longPressTimeoutRef.current = null;
-                     }
-                     setPressedAvatarId(null);
-                   }}
-                   onPointerLeave={() => {
-                     if (longPressTimeoutRef.current) {
-                       clearTimeout(longPressTimeoutRef.current);
-                       longPressTimeoutRef.current = null;
-                     }
-                     setPressedAvatarId(null);
-                   }}
-                   onPointerCancel={() => {
-                     if (longPressTimeoutRef.current) {
-                       clearTimeout(longPressTimeoutRef.current);
-                       longPressTimeoutRef.current = null;
-                     }
-                     setPressedAvatarId(null);
-                   }}
-                   onTouchStart={(e) => { 
-                     setSelectedAvatarSeed(opt.seed);
-                     const gridEl = gridRef.current;
-                     const targetEl = e.currentTarget as HTMLDivElement;
-                     if (gridEl) {
-                       const gridRect = gridEl.getBoundingClientRect();
-                       const targetRect = targetEl.getBoundingClientRect();
-                       const cx = targetRect.left - gridRect.left + targetRect.width / 2;
-                       const cy = targetRect.top - gridRect.top + targetRect.height / 2;
-                       setOverlayCenter({ x: cx, y: cy });
-                     }
-                     if (longPressTimeoutRef.current) {
-                       clearTimeout(longPressTimeoutRef.current);
-                     }
-                     longPressTimeoutRef.current = window.setTimeout(() => {
-                       setPressedAvatarId(opt.id);
-                     }, 350);
-                   }}
-                   onTouchEnd={() => {
-                     if (longPressTimeoutRef.current) {
-                       clearTimeout(longPressTimeoutRef.current);
-                       longPressTimeoutRef.current = null;
-                     }
-                     setPressedAvatarId(null);
-                   }}
-                   className={`cursor-pointer rounded-full p-1 border-2 transition-transform duration-200 ease-out ${
-                      pressedAvatarId === opt.id
-                        ? 'scale-[2.25] z-30 border-indigo-500 bg-indigo-500/20'
-                         : selectedAvatarSeed === opt.seed
-                           ? 'border-indigo-500 bg-indigo-500/20 scale-[1.25]'
-                           : 'border-transparent hover:bg-slate-700'
-                     }${pressedAvatarId && pressedAvatarId !== opt.id ? ' filter blur-[2px] opacity-60' : ''}`}
+                   onClick={() => setSelectedAvatarSeed(opt.seed)}
+                   className={`cursor-pointer rounded-full p-1 border-2 ${
+                      selectedAvatarSeed === opt.seed
+                        ? 'border-indigo-500 bg-indigo-500/20'
+                        : 'border-transparent hover:bg-slate-700'
+                     }`}
                  >
                     <img 
                       src={getAvatarUrl(opt.seed)}
@@ -213,20 +144,11 @@ export const Registration: React.FC<RegistrationProps> = ({ setViewState, onRegi
                         e.currentTarget.src = getAvatarUrl('Felix');
                       }}
                       alt={opt.label} 
-                      className="w-full h-auto rounded-full bg-slate-700 will-change-transform"
+                      className="w-full h-auto rounded-full bg-slate-700"
                     />
                  </div>
                ))}
-               {pressedAvatarId && overlayCenter && (
-                 <div 
-                   className="absolute inset-0 pointer-events-none backdrop-blur-[4px]"
-                   style={{
-                     WebkitMaskImage: `radial-gradient(circle at ${overlayCenter.x}px ${overlayCenter.y}px, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 55px, rgba(0,0,0,0.15) 100px, rgba(0,0,0,0.35) 180px, rgba(0,0,0,0.6) 260px)`,
-                     maskImage: `radial-gradient(circle at ${overlayCenter.x}px ${overlayCenter.y}px, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 55px, rgba(0,0,0,0.15) 100px, rgba(0,0,0,0.35) 180px, rgba(0,0,0,0.6) 260px)`,
-                   }}
-                 />
-               )}
-              </div>
+             </div>
           </div>
 
           {/* Sezione Dati Personali */}

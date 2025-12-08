@@ -451,7 +451,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
 
       if (isPlaying && isTimerFullscreen) {
           return (
-            <div className={`fixed inset-0 z-[200] bg-gradient-to-br ${activeGame.color} flex flex-col`}>
+            <div className={`fixed inset-0 z-[200] bg-gradient-to-br ${activeGame.color} flex flex-col h-[100dvh]`}>
                 <div className="absolute top-6 right-6 flex gap-4 z-50">
                     <button 
                         onClick={() => setIsTimerFullscreen(false)}
@@ -561,17 +561,17 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
                 </button>
             </div>
 
-            <div className={`flex-1 flex flex-col items-center ${isTablet ? 'justify-start pt-6' : 'justify-center'} p-8 text-center text-white animate-fade-in relative ${isTablet && !isPlaying ? 'pb-[30vh]' : isTablet ? 'pb-[22vh]' : 'pb-32'}`}>
-                <div className="mb-6 p-6 bg-white/20 rounded-full backdrop-blur-md shadow-2xl">
+            <div className={`flex-1 flex flex-col p-8 text-center text-white animate-fade-in`}>
+                <div className="mb-6 self-center p-6 bg-white/20 rounded-full backdrop-blur-md shadow-2xl">
                     {getGameIcon(activeGame.icon, "w-24 h-24 md:w-32 md:h-32")}
                 </div>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-tight drop-shadow-lg leading-none">{activeGame.title}</h1>
-                <p className={`text-xl md:text-3xl font-medium max-w-5xl leading-relaxed bg-black/20 p-6 md:p-8 mb-12 rounded-2xl backdrop-blur-sm border border-white/10`}>
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-tight drop-shadow-lg leading-none self-center">{activeGame.title}</h1>
+                <p className={`text-xl md:text-3xl font-medium max-w-5xl leading-relaxed bg-black/20 p-6 md:p-8 rounded-2xl backdrop-blur-sm border border-white/10 self-center flex-1 overflow-y-auto`}>
                     {activeGame.description}
                 </p>
 
                 {!isPlaying ? (
-                    <div className={`bg-black/30 p-8 rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 transition-all duration-500 relative z-20`}>
+                    <div className={`bg-black/30 p-8 rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 transition-all duration-500 self-center mt-auto w-full max-w-md`}>
                         <div className="animate-fade-in">
                             {activeGame.id === 'game-swap' ? (
                                 // --- SPECIAL UI FOR SWAP GAME ---
@@ -601,7 +601,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
                                     </div>
                                     <button 
                                         onClick={handleStartGame}
-                                        className="w-full bg-white text-black font-black px-12 py-5 rounded-xl text-3xl shadow-2xl hover:scale-105 transition flex items-center justify-center"
+                                        className="w-full bg-white text-black font-black px-12 py-5 rounded-xl text-3xl shadow-2xl transition flex items-center justify-center"
                                     >
                                         <PlayCircle className="w-8 h-8 mr-3" />
                                         GIOCA
@@ -611,7 +611,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
                         </div>
                     </div>
                 ) : (
-                    <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-black/30 ${isTablet ? 'p-6' : 'p-8'} rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 z-20`}>
+                    <div className={`bg-black/30 ${isTablet ? 'p-6' : 'p-8'} rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 self-center mt-auto w-full max-w-md`}>
                         <div className="flex flex-col items-center">
                              <div className="flex items-center justify-between w-full mb-4 px-2">
                                  <span className="text-sm font-bold uppercase tracking-widest opacity-60">Tempo Rimanente</span>
@@ -1217,15 +1217,12 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
                             className={`relative group cursor-pointer rounded-xl overflow-hidden border border-slate-700 hover:border-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg`}
                           >
                               <div className={`absolute inset-0 bg-gradient-to-br ${game.color} opacity-20 group-hover:opacity-40 transition-opacity`}></div>
-                              <div className="p-6 flex flex-col items-center text-center relative z-10">
-                                  <div className="mb-4 p-4 bg-white/10 rounded-full text-white">
-                                      {getGameIcon(game.icon, "w-12 h-12")}
+                              <div className="p-5 flex flex-col items-center text-center relative z-10">
+                                  <div className="mb-3 p-3 bg-white/10 rounded-full text-white">
+                                      {getGameIcon(game.icon, "w-10 h-10")}
                                   </div>
-                                  <h3 className="text-xl font-bold text-white mb-2">{game.title}</h3>
-                                  <p className="text-sm text-slate-300 line-clamp-2">{game.description}</p>
-                                  <div className="mt-2 px-4 py-2 bg-white/10 rounded-lg text-xs font-bold text-white uppercase tracking-wider group-hover:bg-white group-hover:text-black transition-colors">
-                                      Seleziona
-                                  </div>
+                                  <h3 className="text-lg font-bold text-white mb-1">{game.title}</h3>
+                                  <p className="text-xs text-slate-300 line-clamp-2">{game.description}</p>
                               </div>
                           </div>
                       ))}
