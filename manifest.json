@@ -1,0 +1,12 @@
+{
+  "name": "JamSession Manager",
+  "short_name": "JamSession",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    { "src": "/icons/icon1.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon2.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
