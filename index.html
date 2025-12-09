@@ -49,11 +49,28 @@
       .animate-fade-in-up {
         animation: fade-in-up 0.5s ease-out forwards;
       }
+      /* Game screen base layout */
+      .game-screen {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100dvh;
+        overflow: hidden;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .game-screen .content-gap { gap: 15px; }
+      .game-screen .game-rules { z-index: 10; }
+      .game-screen .game-bottom { z-index: 10; }
+
       /* Game screen responsive reductions in landscape */
-      @media (max-height: 500px) and (orientation: landscape) {
-        .game-screen .game-header-icon svg { width: 60px; height: 60px; }
-        .game-screen .game-title { font-size: 2.5rem; }
+      @media (max-height: 850px) and (orientation: landscape) {
+        .game-screen .game-header-icon svg { width: 70px; height: 70px; }
+        .game-screen .game-title { font-size: 2rem; }
         .game-screen .content-gap { gap: 12px; }
+        .game-screen .game-rules { padding: 12px; margin-bottom: 15px; }
       }
     </style>
   <script type="importmap">

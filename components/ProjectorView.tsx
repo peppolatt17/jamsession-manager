@@ -551,7 +551,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
       }
 
       return (
-        <div className={`fixed inset-0 z-[200] bg-gradient-to-br ${activeGame.color} flex flex-col h-[100dvh] w-[100vw] overflow-hidden justify-between py-2 game-screen`}>
+        <div className={`fixed inset-0 z-[200] bg-gradient-to-br ${activeGame.color} flex flex-col h-[100dvh] w-full overflow-hidden items-center justify-center py-2 game-screen`}>
             <div className="absolute top-4 right-4 flex gap-4 z-50">
                  <button 
                     onClick={() => { setGameMode(null); setActiveGame(null); setIsGameRunning(false); }}
