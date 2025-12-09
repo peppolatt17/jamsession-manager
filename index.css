@@ -1,0 +1,7 @@
+/* Global PWA fullscreen safety */
+html, body {
+  background-color: #0f172a;
+}
+body {
+  min-height: 100svh;
+}

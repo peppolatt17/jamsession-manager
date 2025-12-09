@@ -561,17 +561,17 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
                 </button>
             </div>
 
-            <div className={`flex-1 flex flex-col p-8 text-center text-white animate-fade-in`}>
-                <div className="mb-6 self-center p-6 bg-white/20 rounded-full backdrop-blur-md shadow-2xl">
+            <div className={`flex-1 flex flex-col items-center gap-8 p-8 text-center text-white animate-fade-in`}>
+                <div className="self-center p-6 bg-white/20 rounded-full backdrop-blur-md shadow-2xl">
                     {getGameIcon(activeGame.icon, "w-24 h-24 md:w-32 md:h-32")}
                 </div>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-tight drop-shadow-lg leading-none self-center">{activeGame.title}</h1>
-                <p className={`text-xl md:text-3xl font-medium max-w-5xl leading-relaxed bg-black/20 p-6 md:p-8 rounded-2xl backdrop-blur-sm border border-white/10 self-center flex-1 overflow-y-auto`}>
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight drop-shadow-lg leading-none self-center">{activeGame.title}</h1>
+                <p className={`text-xl md:text-3xl font-medium max-w-5xl leading-relaxed bg-black/20 p-6 md:p-8 rounded-2xl backdrop-blur-sm border border-white/10 self-center flex-1 overflow-y-auto mb-8`}>
                     {activeGame.description}
                 </p>
 
                 {!isPlaying ? (
-                    <div className={`bg-black/30 p-8 rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 transition-all duration-500 self-center mt-auto w-full max-w-md`}>
+                    <div className={`bg-black/30 p-8 rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 transition-all duration-500 self-center w-full max-w-md mt-6 mb-2`}>
                         <div className="animate-fade-in">
                             {activeGame.id === 'game-swap' ? (
                                 // --- SPECIAL UI FOR SWAP GAME ---
@@ -611,7 +611,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
                         </div>
                     </div>
                 ) : (
-                    <div className={`bg-black/30 ${isTablet ? 'p-6' : 'p-8'} rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 self-center mt-auto w-full max-w-md`}>
+                    <div className={`bg-black/30 ${isTablet ? 'p-6' : 'p-8'} rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 self-center w-full max-w-md mt-6 mb-2`}>
                         <div className="flex flex-col items-center">
                              <div className="flex items-center justify-between w-full mb-4 px-2">
                                  <span className="text-sm font-bold uppercase tracking-widest opacity-60">Tempo Rimanente</span>
@@ -727,7 +727,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
   // 2.5 STATE: GLOBAL TIMER FULLSCREEN
   if (isGlobalTimerFullscreen) {
       return (
-          <div className="fixed inset-0 z-[200] bg-slate-950 w-full h-[100dvh] flex flex-col items-center justify-center text-white relative overflow-hidden">
+          <div className="fixed inset-0 z-[200] bg-[#0f172a] w-full h-[100dvh] min-h-[100svh] flex flex-col items-center justify-center text-white relative overflow-hidden">
               
               {/* Band Name (Top Left) */}
               {currentBand && (
@@ -753,7 +753,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
               </div>
 
               {/* Main Content Container (Centers Timer and Play Button Vertically) */}
-              <div className="flex flex-col items-center justify-center gap-8 md:gap-16 w-full pt-16 md:pt-24">
+              <div className="flex flex-col items-center justify-center gap-10 md:gap-16 w-full pt-12 md:pt-20">
                   <div 
                       className={`text-[35vw] font-black tabular-nums tracking-tighter leading-none select-none drop-shadow-2xl text-center ${timeLeft < 60 ? (timeLeft < 30 ? 'text-red-500 animate-pulse' : 'text-yellow-400') : 'text-white'}`}
                   >
@@ -761,7 +761,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
                   </div>
                   
                   {/* Play/Pause Control (Centered below timer, within flex flow to prevent overlap) */}
-                  <div className="z-[201] -mt-6 md:-mt-12 flex items-center justify-center gap-3 md:gap-4">
+                  <div className="z-[201] flex items-center justify-center gap-3 md:gap-4">
                        {!isRunning ? (
                            <button onClick={() => setIsRunning(true)} className="bg-green-600 hover:bg-green-500 text-white p-6 md:p-8 rounded-full shadow-2xl transition hover:scale-110">
                                <Play className="w-12 h-12 md:w-20 md:h-20 fill-current" />
