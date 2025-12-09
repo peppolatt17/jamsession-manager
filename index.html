@@ -49,6 +49,12 @@
       .animate-fade-in-up {
         animation: fade-in-up 0.5s ease-out forwards;
       }
+      /* Game screen responsive reductions in landscape */
+      @media (max-height: 500px) and (orientation: landscape) {
+        .game-screen .game-header-icon svg { width: 60px; height: 60px; }
+        .game-screen .game-title { font-size: 2.5rem; }
+        .game-screen .content-gap { gap: 12px; }
+      }
     </style>
   <script type="importmap">
 {

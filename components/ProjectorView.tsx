@@ -551,7 +551,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
       }
 
       return (
-        <div className={`fixed inset-0 z-[200] bg-gradient-to-br ${activeGame.color} flex flex-col`}>
+        <div className={`fixed inset-0 z-[200] bg-gradient-to-br ${activeGame.color} flex flex-col h-[100dvh] w-[100vw] overflow-hidden justify-between py-2 game-screen`}>
             <div className="absolute top-4 right-4 flex gap-4 z-50">
                  <button 
                     onClick={() => { setGameMode(null); setActiveGame(null); setIsGameRunning(false); }}
@@ -561,17 +561,19 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
                 </button>
             </div>
 
-            <div className={`flex-1 flex flex-col items-center gap-8 p-8 text-center text-white animate-fade-in`}>
-                <div className="self-center p-6 bg-white/20 rounded-full backdrop-blur-md shadow-2xl">
-                    {getGameIcon(activeGame.icon, "w-24 h-24 md:w-32 md:h-32")}
+            <div className={`flex-1 flex flex-col items-center content-gap px-6 text-center text-white animate-fade-in`}>
+                <div className="game-header flex flex-col items-center gap-2 shrink">
+                    <div className="game-header-icon p-6 bg-white/20 rounded-full backdrop-blur-md shadow-2xl">
+                        {getGameIcon(activeGame.icon, "w-24 h-24 md:w-32 md:h-32")}
+                    </div>
+                    <h1 className="game-title text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight drop-shadow-lg leading-none">{activeGame.title}</h1>
                 </div>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight drop-shadow-lg leading-none self-center">{activeGame.title}</h1>
-                <p className={`text-xl md:text-3xl font-medium max-w-5xl leading-relaxed bg-black/20 p-6 md:p-8 rounded-2xl backdrop-blur-sm border border-white/10 self-center flex-1 overflow-y-auto mb-8`}>
+                <p className={`game-rules text-xl md:text-3xl font-medium max-w-5xl leading-relaxed bg-black/20 p-6 md:p-8 rounded-2xl backdrop-blur-sm border border-white/10 self-stretch overflow-y-auto`}>
                     {activeGame.description}
                 </p>
 
                 {!isPlaying ? (
-                    <div className={`bg-black/30 p-8 rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 transition-all duration-500 self-center w-full max-w-md mt-6 mb-2`}>
+                    <div className={`bg-black/30 p-8 rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 transition-all duration-500 self-center w-full max-w-md flex-shrink-0 pb-4`}>
                         <div className="animate-fade-in">
                             {activeGame.id === 'game-swap' ? (
                                 // --- SPECIAL UI FOR SWAP GAME ---
@@ -611,7 +613,7 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
                         </div>
                     </div>
                 ) : (
-                    <div className={`bg-black/30 ${isTablet ? 'p-6' : 'p-8'} rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 self-center w-full max-w-md mt-6 mb-2`}>
+                    <div className={`bg-black/30 ${isTablet ? 'p-6' : 'p-8'} rounded-3xl backdrop-blur-md min-w-[300px] md:min-w-[500px] shadow-2xl border border-white/10 self-center w-full max-w-md flex-shrink-0 pb-4`}>
                         <div className="flex flex-col items-center">
                              <div className="flex items-center justify-between w-full mb-4 px-2">
                                  <span className="text-sm font-bold uppercase tracking-widest opacity-60">Tempo Rimanente</span>
